@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>IQ Games: Chess and Sudoku</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            background: url('Hands.png') no-repeat center center/cover;
+        }
+        .games-container {
+            display: flex;
+            justify-content: space-around;
+            width: 100%;
+            max-width: 1200px;
+            margin-top: 20px;
+        }
+        .game-card {
+            background-color: #fff;
+            border-radius: 10px;
+            box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
+            width: 45%;
+            padding: 20px;
+            text-align: center;
+        }
+        .game-card h2 {
+            margin-bottom: 20px;
+        }
+        #chessboard {
+            margin: 0 auto;
+            width: 320px;
+        }
+        #sudoku-board {
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(9, 40px);
+            grid-gap: 5px;
+        }
+        #sudoku-board input {
+            width: 40px;
+            height: 40px;
+            text-align: center;
+            font-size: 20px;
+        }
+        #sudoku-board input:disabled {
+            background-color: #f0f0f0;
+        }
+        button {
+            margin-top: 20px;
+            padding: 10px 20px;
+            background-color: #5cb85c;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #4cae4c;
+        }
+    </style>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/chessboard-js/1.0.0/chessboard.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/chess.js/0.10.2/chess.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/chessboard-js/1.0.0/chessboard.min.css">
+</head>
+<body>
+
+<h1>IQ Games: Chess and Sudoku</h1>
+
+<div class="games-container">
+    <!-- Chess Game -->
+    <div class="game-card">
+        <h2>Play Chess</h2>
+        <div id="chessboard"></div>
+        <button onclick="resetChess()">Reset Chess</button>
+    </div>
+
+    <!-- Sudoku Game -->
+    <div class="game-card">
+        <h2>Play Sudoku</h2>
+        <div id="sudoku-board"></div>
+        <button onclick="checkSudoku()">Check Sudoku</button>
+    </div>
+</div>
+
+<script>
+    // Chessboard.js configuration
+    var board = Chessboard('chessboard', {
+        draggable: true,
+        dropOffBoard: 'snapback',
+        position: 'start',
+        pieceTheme: 'https://cdnjs.cloudflare.com/ajax/libs/chessboard-js/1.0.0/img/chesspieces/wikipedia/{piece}.png'
+    });
+
+    function resetChess() {
+        board.start();
+    }
+
+    // Sudoku game configuration
+    const initialSudoku = [
+        [5, 3, 0, 0, 7, 0, 0, 0, 0],
+        [6, 0, 0, 1, 9, 5, 0, 0, 0],
+        [0, 9, 8, 0, 0, 0, 0, 6, 0],
+        [8, 0, 0, 0, 6, 0, 0, 0, 3],
+        [4, 0, 0, 8, 0, 3, 0, 0, 1],
+        [7, 0, 0, 0, 2, 0, 0, 0, 6],
+        [0, 6, 0, 0, 0, 0, 2, 8, 0],
+        [0, 0, 0, 4, 1, 9, 0, 0, 5],
+        [0, 0, 0, 0, 8, 0, 0, 7, 9]
+    ];
+
+    function createSudokuBoard() {
+        const sudokuBoard = document.getElementById('sudoku-board');
+        sudokuBoard.innerHTML = ''; // Clear existing board
+
+        for (let i = 0; i < 9; i++) {
+            for (let j = 0; j < 9; j++) {
+                const input = document.createElement('input');
+                input.type = 'text';
+                input.maxLength = '1';
+                input.dataset.row = i;
+                input.dataset.col = j;
+
+                if (initialSudoku[i][j] !== 0) {
+                    input.value = initialSudoku[i][j];
+                    input.disabled = true; // Disable editing on initial values
+                }
+
+                sudokuBoard.appendChild(input);
+            }
+        }
+    }
+
+    function checkSudoku() {
+        const inputs = document.querySelectorAll('#sudoku-board input');
+        let isComplete = true;
+
+        inputs.forEach(input => {
+            const value = parseInt(input.value) || 0;
+            const row = parseInt(input.dataset.row);
+            const col = parseInt(input.dataset.col);
+
+            if (value !== initialSudoku[row][col]) {
+                input.style.backgroundColor = 'red';
+                isComplete = false;
+            } else {
+                input.style.backgroundColor = 'white';
+            }
+        });
+
+        if (isComplete) {
+            alert('Congratulations! You have solved the Sudoku!');
+        } else {
+            alert('Some values are incorrect. Keep trying!');
+        }
+    }
+
+    // Initialize the Sudoku board
+    createSudokuBoard();
+</script>
+
+</body>
+</html>

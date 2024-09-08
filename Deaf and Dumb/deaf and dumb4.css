@@ -1,0 +1,39 @@
+body {
+    margin: 0;
+    padding: 0;
+    font-family: Arial, sans-serif;
+    background: url('Hands.png') no-repeat center center/cover;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
+.dashboard-container {
+    text-align: center;
+    position: relative;
+}
+
+.button-group {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 20px;
+}
+
+.button-group button {
+    background-color: rgba(255, 255, 255, 0.8); /* Slightly transparent white */
+    border: 2px solid #1e1e1e;
+    border-radius: 20px;
+    padding: 10px 20px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background-color 0.3s ease, color 0.3s ease;
+    width: 180px;
+    margin-bottom: 20px;
+}
+
+.button-group button:hover {
+    background-color: #1e1e1e;
+    color: white;
+}

@@ -1,0 +1,59 @@
+body {
+    margin: 0;
+    padding: 0;
+    font-family: Arial, sans-serif;
+    background-color: #fff;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background: url('Hands.png') no-repeat center center/cover;
+}
+
+.form-container {
+    background-color: #fff;
+    padding: 40px;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    width: 400px;
+}
+
+.input-group {
+    margin-bottom: 20px;
+}
+
+.input-group label {
+    display: block;
+    font-size: 18px;
+    margin-bottom: 5px;
+    text-align: left;
+}
+
+.input-group input {
+    width: 100%;
+    padding: 10px;
+    border-radius: 20px;
+    border: 1px solid #1e1e1e;
+    box-sizing: border-box;
+    outline: none;
+    text-align: center;
+}
+
+.submit-group {
+    text-align: right;
+}
+
+.submit-group button {
+    background-color: white;
+    border: 1px solid #1e1e1e;
+    border-radius: 20px;
+    padding: 10px 20px;
+    font-size: 16px;
+    cursor: pointer;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+    transition: background-color 0.3s ease;
+}
+
+.submit-group button:hover {
+    background-color: #e0e0e0;
+}

@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Combined Quiz</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            background: url('Hands.png') no-repeat center center/cover;
+        }
+        .quiz-container {
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
+            width: 600px;
+            text-align: left;
+        }
+        .quiz-container h2 {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+        .quiz-question {
+            margin-bottom: 20px;
+        }
+        .quiz-question label {
+            display: block;
+            margin-bottom: 5px;
+        }
+        .quiz-question input {
+            margin-right: 10px;
+        }
+        .quiz-container button {
+            display: block;
+            margin: 20px auto;
+            padding: 10px 20px;
+            background-color: #5cb85c;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        .quiz-container button:hover {
+            background-color: #4cae4c;
+        }
+        .report-card {
+            display: none;
+            text-align: center;
+            margin-top: 20px;
+        }
+        .report-card h3 {
+            margin-bottom: 15px;
+        }
+    </style>
+</head>
+<body>
+
+<div class="quiz-container">
+    <h2>Combined Quiz</h2>
+
+    <div class="quiz-question">
+        <h3>English</h3>
+        <label>1. What is the synonym of "Happy"?</label>
+        <input type="radio" name="english1" value="0">Sad<br>
+        <input type="radio" name="english1" value="1">Joyful<br>
+        <input type="radio" name="english1" value="0">Angry<br>
+        <input type="radio" name="english1" value="0">Bored<br>
+    </div>
+
+    <div class="quiz-question">
+        <h3>Hindi</h3>
+        <label>2. "Vidyalaya" का अर्थ क्या है?</label>
+        <input type="radio" name="hindi1" value="0">घर<br>
+        <input type="radio" name="hindi1" value="1">विद्यालय<br>
+        <input type="radio" name="hindi1" value="0">बाज़ार<br>
+        <input type="radio" name="hindi1" value="0">पुस्तकालय<br>
+    </div>
+
+    <div class="quiz-question">
+        <h3>Maths</h3>
+        <label>3. What is 5 + 7?</label>
+        <input type="radio" name="maths1" value="0">10<br>
+        <input type="radio" name="maths1" value="1">12<br>
+        <input type="radio" name="maths1" value="0">14<br>
+        <input type="radio" name="maths1" value="0">15<br>
+    </div>
+
+    <button onclick="calculateScore()">Submit Quiz</button>
+</div>
+
+<div class="report-card">
+    <h3>Your Report Card</h3>
+    <p id="score"></p>
+    <p id="message"></p>
+</div>
+
+<script>
+    function calculateScore() {
+        let score = 0;
+        const totalQuestions = 3;
+
+        const english1 = document.querySelector('input[name="english1"]:checked');
+        const hindi1 = document.querySelector('input[name="hindi1"]:checked');
+        const maths1 = document.querySelector('input[name="maths1"]:checked');
+
+        if (english1 && english1.value === "1") score++;
+        if (hindi1 && hindi1.value === "1") score++;
+        if (maths1 && maths1.value === "1") score++;
+
+        document.querySelector('.quiz-container').style.display = 'none';
+        document.querySelector('.report-card').style.display = 'block';
+
+        document.getElementById('score').innerText = `You scored ${score} out of ${totalQuestions}`;
+        
+        let message = "";
+        if (score === 3) {
+            message = "Excellent! You got all answers correct!";
+        } else if (score === 2) {
+            message = "Good job! You missed only one.";
+        } else {
+            message = "Keep trying! You can do better.";
+        }
+
+        document.getElementById('message').innerText = message;
+    }
+</script>
+
+</body>
+</html>

@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Registration Page</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 120vh;
+            background: url('Hands.png') no-repeat center center/cover;
+        }
+        .registration-form {
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 5px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            width: 600px;
+        }
+        .registration-form h2 {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+        .registration-form .form-group {
+            margin-bottom: 15px;
+        }
+        .registration-form .form-group label {
+            display: block;
+            margin-bottom: 5px;
+        }
+        .registration-form .form-group input {
+            width: 100%;
+            padding: 8px;
+            box-sizing: border-box;
+        }
+        .registration-form .form-footer {
+            display: flex;
+            justify-content: space-between;
+        }
+        .registration-form .form-footer button {
+            padding: 10px 15px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        .registration-form .form-footer .edit-btn {
+            background-color: #f0ad4e;
+            color: white;
+        }
+        .registration-form .form-footer .submit-btn {
+            background-color: #5cb85c;
+            color: white;
+        }
+    </style>
+</head>
+<body>
+
+<div class="registration-form">
+    <h2>Registration Form</h2>
+    <form action="submit_registration.php" method="post">
+        <div class="form-group">
+            <label for="full-name">Full Name*:</label>
+            <input type="text" id="full-name" name="full_name" required>
+        </div>
+        <div class="form-group">
+            <label for="phone-no">Phone No*:</label>
+            <input type="tel" id="phone-no" name="phone_no" required>
+        </div>
+        <div class="form-group">
+            <label for="email-id">Email ID*:</label>
+            <input type="email" id="email-id" name="email_id" required>
+        </div>
+        <div class="form-group">
+            <label for="alternate-email">Alternate Email ID:</label>
+            <input type="email" id="alternate-email" name="alternate_email">
+        </div>
+        <div class="form-group">
+            <label for="address">Address*:</label>
+            <input type="text" id="address" name="address" required>
+        </div>
+        <div class="form-group">
+            <label for="age">Age:</label>
+            <input type="number" id="age" name="age" min="1" max="120">
+        </div>
+        <div class="form-group">
+            <label for="parents-contact-no">Parents Contact No*:</label>
+            <input type="tel" id="parents-contact-no" name="parents_contact_no">
+        </div>
+        <div class="form-group">
+            <label for="alternate-contact-no">Alternate Contact No:</label>
+            <input type="tel" id="alternate-contact-no" name="alternate_contact-no">
+        </div>
+        <div class="form-footer">
+            <button type="button" class="edit-btn" onclick="enableEditing()">Edit</button>
+            <button type="submit" class="submit-btn">Submit</button>
+        </div>
+    </form>
+</div>
+
+<script>
+    function enableEditing() {
+        document.querySelectorAll('input').forEach(input => {
+            input.disabled = !input.disabled;
+        });
+    }
+</script>
+
+</body>
+</html>
